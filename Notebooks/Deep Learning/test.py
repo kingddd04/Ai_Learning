@@ -1,29 +1,8 @@
-import tensorflow as tf
-from tensorflow.keras import layers, models
+import numpy as np
 
-# Load dataset (60,000 training images, 10,000 test images)
-(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
-
-# Normalize pixel values (0–255 → 0–1)
-x_train = x_train / 255.0
-x_test = x_test / 255.0
-
-# Build a simple feedforward neural network
-model = models.Sequential([
-    layers.Flatten(input_shape=(28, 28)),          # Flatten 28x28 images into 784 vector
-    layers.Dense(128, activation='relu'),          # Hidden layer
-    layers.Dropout(0.2),                           # Dropout for regularization
-    layers.Dense(10, activation='softmax')         # Output layer (10 classes)d
-])
-
-# Compile the model
-model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
-
-# Train the model
-model.fit(x_train, y_train, epochs=5, batch_size=32)
-
-# Evaluate on test data
-test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
-print("\nTest accuracy:", test_acc)
+# Create array of zeros
+arr = np.zeros((60000, 255, 255, 255), dtype=np.float32)
+arr = np.expand_dims(arr, axis=-1)  # (60000, 28, 28, 1)
+arr = np.repeat(arr, repeats=3, axis=-1)  # (60000, 28, 28, 3)
+print(arr.shape)   # (60000, 244, 244)
+print(arr.nbytes / (1024**3), "GB")  # memory size in GB
