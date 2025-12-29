@@ -27,7 +27,7 @@ def sigmoid(x):
 # --- Hyperparameters ---
 
 mlp_architecture = [4, 6, 8, 5, 1]  # Input layer: 4, Hidden layers: 4 neurons each, Output layer: 1
-epochs = 100
+epochs = 200
 batch_size = 4
 lr = 0.1
 
@@ -119,9 +119,10 @@ for epoch in range(epochs):
         W1 -= lr * dW1
         b1 -= lr * db1
 
-        print(f"mini batch [{index}][{end}] loss: {loss}")
+        #print(f"mini batch [{index}][{end}] loss: {loss}")
 
-    print(f"Epoca {epoch+1}/{epochs} loss: {np.mean(losses):.4f}")
+    if epoch % 10 == 0:
+        print(f"Epoca {epoch+1}/{epochs} loss: {np.mean(losses):.4f}")
 
 
 
