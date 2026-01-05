@@ -23,10 +23,13 @@ class Text_Preprocesser:
                 if char == " ":
                     polished_text += char
                     continue
+                if char == ",":
+                    polished_text += " , "
+                    continue
                 temp_string = " " + char + " "
                 polished_text += temp_string
-        polished_splitted_text = polished_text.split()
-        return polished_splitted_text
+        polished_text = polished_text.replace("  ", " ")
+        return polished_text
 
     @staticmethod
     def save_preprocessed_text(filepath, text):

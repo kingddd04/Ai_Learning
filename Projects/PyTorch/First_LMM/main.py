@@ -2,12 +2,17 @@ from text_reader import Text_Reader
 from text_preprocesser import Text_Preprocesser
 from tokenizer import Tokenizer
 
-text = Text_Reader.extract_text("C:/Users/david_bbnm/OneDrive/Documents/GitHub/Ai_Learning/Projects/PyTorch/First_LMM/promessi_sposi-cap1.txt")
+"""
+### Preprocessing Testo
+text = Text_Reader.extract_text("C:\\Users\\david_bbnm\\Downloads\\bible clean.txt")
 polished_text = Text_Preprocesser.text_preprocess(text)
+Text_Preprocesser.save_preprocessed_text("C:\\Users\\david_bbnm\\Downloads\\bible cleaned.txt", polished_text)
+"""
+"""
+### Tokenizzazione e salvataggio 
+text = Text_Reader.extract_text("C:\\Users\\david_bbnm\\Downloads\\bible cleaned preprocessed.txt")
 tokenizer = Tokenizer()
-tokenizer.tokenize_training_text(polished_text)
-tokens = tokenizer.tokenize(polished_text)
-print(tokens[:20])
-text = tokenizer.detokenize(tokens[:20])
-print(text)
+tokenized_txt = tokenizer.tokenize(text)
+Tokenizer.save_tokenization(tokenized_txt, "C:\\Users\\david_bbnm\\Downloads\\bible tokenized.json")
+"""
 
